@@ -2,7 +2,7 @@
 #include<iostream>
 #include <vector>
 using namespace std;
-enum OE{ odd = 'O', even = 'E' };
+enum class OE { odd = 'O', even = 'E', other };
 class Matrix {
 private:
     int rows = 0, cols = 0;
@@ -79,19 +79,19 @@ void Matrix::erase() {
 void Matrix::checkOE() const {
     cout << "What do you want to check? O/E(Odd/Even): ";
     int count = 0;
-    OE r;
+    OE resultOE = OE::other;
     char res;
     cin >> res;
-    if (res == static_cast<char>(OE::odd)) {
-        r = OE::odd;
+    if (res == static_cast<char>(OE::odd) || res == 'o') {
+        resultOE = OE::odd;
     }
-    else {
-        res == static_cast<char>(OE::even) ? r = OE::even : r = OE::odd;
+    else if (res == static_cast<char>(OE::even) || res == 'e') {
+        resultOE = OE::even;
     }
-    switch (r) {
-    default:
-        cout << "You didn't input valid char!" << endl;
-        break;
+    else if (res != static_cast<char>(OE::even) && res != static_cast<char>(OE::odd)) {
+        resultOE = OE::other;
+    }
+    switch (resultOE) {
     case OE::even:
         count = 0;
         for (int i = 0; i < this->rows; ++i) {
@@ -127,6 +127,10 @@ void Matrix::checkOE() const {
             cout << "These members of Matrix are not odd: " << (this->rows * this->cols - count) << '\n';
             break;
         }
+        break;
+    case OE::other:
+        cout << "Your input is invalid!" << endl;
+        exit(EXIT_FAILURE);
         break;
     }
 }
