@@ -1,3 +1,7 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -196,3 +200,5 @@ inline void Matrix::operator=(Matrix obj) noexcept {
         }
     }
 }
+
+#endif
