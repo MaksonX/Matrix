@@ -1,5 +1,4 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+
 
 
 #include <iostream>
@@ -201,4 +200,3 @@ inline void Matrix::operator=(Matrix obj) noexcept {
     }
 }
 
-#endif
